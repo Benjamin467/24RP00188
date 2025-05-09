@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In - Waste Collection Tracker</title>
+  <meta name="description" content="Sign in or register for the Gatsibo Waste Collection Tracker. Create an account to access personalized collection schedules and updates.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>♻️</text></svg>">
+  <style>
+    
+    .auth-section {
+      padding: 4rem 0;
+      min-height: calc(100vh - 180px);
+      display: flex;
+      align-items: center;
+    }
+    
+    .auth-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      background-color: white;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .auth-hero {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1604187351574-c75ca79f5807?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800&q=80');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      color: white;
+    }
+    
+    .auth-hero-content {
+      max-width: 400px;
+      text-align: center;
+    }
+    
+    .auth-hero-title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    
+    .auth-hero-text {
+      font-size: 1.125rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+    }
+    
+    .auth-hero-features {
+      text-align: left;
+      list-style: none;
+    }
+    
+    .auth-hero-features li {
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+    }
+    
+    .auth-hero-features li:before {
+      content: '✓';
+      display: inline-block;
+      margin-right: 0.75rem;
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+    
+    .auth-form-container {
+      padding: 3rem 2rem;
+    }
+    
+    .auth-form-title {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--primary);
+      font-size: 1.75rem;
+    }
+    
+    .auth-tabs {
+      display: flex;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .auth-tab {
+      flex: 1;
+      text-align: center;
+      padding: 0.75rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: var(--muted-foreground);
+      border-bottom: 2px solid transparent;
+    }
+    
+    .auth-tab.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+    
+    .auth-form {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    
+    .auth-form.hidden {
+      display: none;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-family: inherit;
+      font-size: 1rem;
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(39, 174, 96, 0.2);
+    }
+    
+    .form-control.error {
+      border-color: #e53935;
+    }
+    
+    .error-message {
+      color: #e53935;
+      font-size: 0.85rem;
+      margin-top: 0.25rem;
+    }
+    
+    .auth-link {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+    }
+    
+    .auth-link a {
+      color: var(--primary);
+      font-weight: 500;
+    }
+    
+    @media (max-width: 768px) {
+      .auth-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .auth-hero {
+        padding: 3rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <a href="index.html">
+            <span class="logo-icon">♻️</span>
+            <span class="logo-text">Waste Collection Tracker</span>
+          </a>
+        </div>
+        <nav class="main-nav">
+          <ul class="nav-list">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="calendar.html" class="nav-link">Calendar</a></li>
+            <li><a href="recycling.html" class="nav-link">Recycling</a></li>
+            <li><a href="contact.html" class="nav-link">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="auth-buttons">
+          <a href="auth.html" class="btn btn-outline active">Sign In</a>
+        </div>
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="auth-section">
+      <div class="container">
+        <div class="auth-container">
+          <div class="auth-hero">
+            <div class="auth-hero-content">
+              <h1 class="auth-hero-title">Waste Collection Tracker</h1>
+              <p class="auth-hero-text">Join the Gatsibo community in our waste management efforts. Create an account to access all features.</p>
+              <ul class="auth-hero-features">
+                <li>Personalized collection reminders</li>
+                <li>Schedule special collections</li>
+                <li>Track your recycling progress</li>
+                <li>Report missed collections</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="auth-form-container">
+            <h2 class="auth-form-title">Welcome</h2>
+            
+            <div class="auth-tabs">
+              <div class="auth-tab active" id="login-tab">Sign In</div>
+              <div class="auth-tab" id="register-tab">Register</div>
+            </div>
+            
+            <form class="auth-form" id="login-form">
+              <div class="form-group">
+                <label for="login-username">Username</label>
+                <input type="text" id="login-username" class="form-control" placeholder="Your username">
+              </div>
+              
+              <div class="form-group">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" class="form-control" placeholder="Your password">
+              </div>
+              
+              <button type="submit" class="btn btn-primary" style="width: 100%;">Sign In</button>
+              
+              <div class="auth-link">
+                <p>Don't have an account? <a href="#" id="switch-to-register">Register</a></p>
+              </div>
+            </form>
+            
+            <form class="auth-form hidden" id="register-form">
+              <div class="form-group">
+                <label for="register-username">Username</label>
+                <input type="text" id="register-username" class="form-control" placeholder="Choose a username">
+              </div>
+              
+              <div class="form-group">
+                <label for="register-email">Email</label>
+                <input type="email" id="register-email" class="form-control" placeholder="Your email address">
+              </div>
+              
+              <div class="form-group">
+                <label for="register-password">Password</label>
+                <input type="password" id="register-password" class="form-control" placeholder="Create a password">
+              </div>
+              
+              <div class="form-group">
+                <label for="register-confirm-password">Confirm Password</label>
+                <input type="password" id="register-confirm-password" class="form-control" placeholder="Confirm your password">
+              </div>
+              
+              <button type="submit" class="btn btn-primary" style="width: 100%;">Register</button>
+              
+              <div class="auth-link">
+                <p>Already have an account? <a href="#" id="switch-to-login">Sign In</a></p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <span class="logo-icon">♻️</span>
+          <span class="logo-text">Waste Collection Tracker</span>
+        </div>
+        <div class="footer-contact">
+          <p>Gatsibo District Office</p>
+          <p>Eastern Province, Rwanda</p>
+          <p>Phone: +250790168996</p>
+          <p>Email: contact@wastecollection.gov.rw</p>
+        </div>
+        <div class="footer-nav">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="calendar.html">Collection Calendar</a></li>
+            <li><a href="recycling.html">Recycling Process</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <h3>Follow Us</h3>
+          <div class="social-icons">
+            <a href="#" class="social-icon">FB</a>
+            <a href="#" class="social-icon">TW</a>
+            <a href="#" class="social-icon">IG</a>
+            <a href="#" class="social-icon">YT</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p> Waste Collection Tracker - Gatsibo.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      const loginTab = document.getElementById('login-tab');
+      const registerTab = document.getElementById('register-tab');
+      const loginForm = document.getElementById('login-form');
+      const registerForm = document.getElementById('register-form');
+      const switchToRegister = document.getElementById('switch-to-register');
+      const switchToLogin = document.getElementById('switch-to-login');
+      
+      function showLoginForm() {
+        loginTab.classList.add('active');
+        registerTab.classList.remove('active');
+        loginForm.classList.remove('hidden');
+        registerForm.classList.add('hidden');
+      }
+      
+      function showRegisterForm() {
+        registerTab.classList.add('active');
+        loginTab.classList.remove('active');
+        registerForm.classList.remove('hidden');
+        loginForm.classList.add('hidden');
+      }
+      
+      if (loginTab && registerTab) {
+        loginTab.addEventListener('click', showLoginForm);
+        registerTab.addEventListener('click', showRegisterForm);
+      }
+      
+      if (switchToRegister && switchToLogin) {
+        switchToRegister.addEventListener('click', function(e) {
+          e.preventDefault();
+          showRegisterForm();
+        });
+        
+        switchToLogin.addEventListener('click', function(e) {
+          e.preventDefault();
+          showLoginForm();
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Waste Collection Tracker</title>
+  <meta name="description" content="Contact the Gatsibo Waste Collection department. Get in touch with our team for inquiries, missed collections, or waste management services.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>♻️</text></svg>">
+  <style>
+    
+    .contact-section {
+      padding: 4rem 0;
+    }
+    
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    
+    .map-container {
+      height: 100%;
+      min-height: 400px;
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    
+    .contact-card {
+      background-color: white;
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+    
+    .contact-title {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+    }
+    
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(39, 174, 96, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1rem;
+      flex-shrink: 0;
+    }
+    
+    .contact-icon svg {
+      width: 20px;
+      height: 20px;
+      color: var(--primary);
+    }
+    
+    .contact-text h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      color: var(--secondary);
+    }
+    
+    .contact-text p {
+      color: var(--muted-foreground);
+      margin-bottom: 0.25rem;
+    }
+    
+    .social-section {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    
+    .social-section h3 {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      color: var(--secondary);
+    }
+    
+    .contact-social-icons {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .contact-social-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      transition: all 0.2s ease;
+    }
+    
+    .contact-social-icon:hover {
+      background-color: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    
+    .contact-form-container {
+      max-width: 700px;
+      margin: 4rem auto 0;
+    }
+    
+    .form-card {
+      background-color: white;
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+    
+    .form-title {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-family: inherit;
+      font-size: 1rem;
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(39, 174, 96, 0.2);
+    }
+    
+    .form-control.error {
+      border-color: #e53935;
+    }
+    
+    .error-message {
+      color: #e53935;
+      font-size: 0.85rem;
+      margin-top: 0.25rem;
+    }
+    
+    .success-message {
+      background-color: rgba(39, 174, 96, 0.1);
+      color: var(--primary);
+      padding: 1rem;
+      border-radius: var(--radius);
+      margin-top: 1.5rem;
+      text-align: center;
+      font-weight: 500;
+    }
+    
+    textarea.form-control {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    
+    @media (max-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .map-container {
+        min-height: 300px;
+        order: 2;
+      }
+      
+      .contact-card {
+        order: 1;
+      }
+      
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <a href="index.html">
+            <span class="logo-icon">♻️</span>
+            <span class="logo-text">Waste Collection Tracker</span>
+          </a>
+        </div>
+        <nav class="main-nav">
+          <ul class="nav-list">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="calendar.html" class="nav-link">Calendar</a></li>
+            <li><a href="recycling.html" class="nav-link">Recycling</a></li>
+            <li><a href="contact.html" class="nav-link active">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="auth-buttons">
+          <a href="auth.html" class="btn btn-outline">Sign In</a>
+        </div>
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="contact-section">
+      <div class="container">
+        <h1 class="page-title">Contact Us</h1>
+        
+        <div class="contact-grid">
+          <div class="map-container">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d255684.91554496937!2d30.214869566221046!3d-1.9328366864806019!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19c29df384f4fb27%3A0x3a28c52df6e33a9f!2sGatsibo%2C%20Rwanda!5e0!3m2!1sen!2sus!4v1624523228201!5m2!1sen!2sus" 
+              allowfullscreen 
+              loading="lazy" 
+              title="Gatsibo Location Map"
+            ></iframe>
+          </div>
+          
+          <div class="contact-card">
+            <h2 class="contact-title">Get in Touch</h2>
+            
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+              </div>
+              <div class="contact-text">
+                <h3>Phone</h3>
+                <p>+250790168996</p>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <div class="contact-text">
+                <h3>Email</h3>
+                <p>contact@wastecollection.gov.rw</p>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <div class="contact-text">
+                <h3>Location</h3>
+                <p>Gatsibo District Office</p>
+                <p>Eastern Province, Rwanda</p>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <div class="contact-text">
+                <h3>Hours</h3>
+                <p>Monday - Friday: 8:00 AM - 5:00 PM</p>
+                <p>Saturday: 9:00 AM - 1:00 PM</p>
+                <p>Sunday: Closed</p>
+              </div>
+            </div>
+            
+            <div class="social-section">
+              <h3>Follow Us</h3>
+              <div class="contact-social-icons">
+                <a href="#" class="contact-social-icon">FB</a>
+                <a href="#" class="contact-social-icon">TW</a>
+                <a href="#" class="contact-social-icon">IG</a>
+                <a href="#" class="contact-social-icon">YT</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="contact-form-container">
+          <div class="form-card">
+            <h2 class="form-title">Send Us a Message</h2>
+            
+            <form id="contact-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" id="name" class="form-control" placeholder="Your name">
+                </div>
+                
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" class="form-control" placeholder="your.email@example.com">
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" class="form-control" placeholder="Subject of your message">
+              </div>
+              
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" class="form-control" placeholder="Your message"></textarea>
+              </div>
+              
+              <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <span class="logo-icon">♻️</span>
+          <span class="logo-text">Waste Collection Tracker</span>
+        </div>
+        <div class="footer-contact">
+          <p>Gatsibo District Office</p>
+          <p>Eastern Province, Rwanda</p>
+          <p>Phone: +250790168996</p>
+          <p>Email: contact@wastecollection.gov.rw</p>
+        </div>
+        <div class="footer-nav">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="calendar.html">Collection Calendar</a></li>
+            <li><a href="recycling.html">Recycling Process</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <h3>Follow Us</h3>
+          <div class="social-icons">
+            <a href="#" class="social-icon">FB</a>
+            <a href="#" class="social-icon">TW</a>
+            <a href="#" class="social-icon">IG</a>
+            <a href="#" class="social-icon">YT</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p> Waste Collection Tracker - Gatsibo.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
